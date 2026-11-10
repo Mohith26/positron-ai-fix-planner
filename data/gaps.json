@@ -1,0 +1,256 @@
+{
+ "stages": [
+  "export",
+  "fxtypedfx",
+  "rewrite",
+  "bulk",
+  "loopy",
+  "tron",
+  "cpp"
+ ],
+ "gaps": [
+  {
+   "id": "G1",
+   "name": "aten.scatter_add.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "MoE",
+   "effort": "medium",
+   "fixed_in": "0.34"
+  },
+  {
+   "id": "G2",
+   "name": "aten.topk.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "sorting",
+   "effort": "small",
+   "fixed_in": "0.33"
+  },
+  {
+   "id": "G3",
+   "name": "aten.index_put.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "MoE",
+   "effort": "medium",
+   "fixed_in": "0.36"
+  },
+  {
+   "id": "G4",
+   "name": "aten.cumsum.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "scan_ops",
+   "effort": "medium",
+   "fixed_in": null
+  },
+  {
+   "id": "G5",
+   "name": "aten.conv1d.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "convolution",
+   "effort": "medium",
+   "fixed_in": null
+  },
+  {
+   "id": "G6",
+   "name": "aten.repeat_interleave.self_int",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "attention_variants",
+   "effort": "small",
+   "fixed_in": "0.35"
+  },
+  {
+   "id": "G7",
+   "name": "aten.masked_fill.Scalar",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "conditional_ops",
+   "effort": "small",
+   "fixed_in": "0.33"
+  },
+  {
+   "id": "G8",
+   "name": "aten.tanh.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "activation",
+   "effort": "small",
+   "fixed_in": "0.35"
+  },
+  {
+   "id": "G9",
+   "name": "aten.roll.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "position_encoding",
+   "effort": "small",
+   "fixed_in": null
+  },
+  {
+   "id": "G10",
+   "name": "aten.new_ones.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "tensor_construction",
+   "effort": "small",
+   "fixed_in": "0.32"
+  },
+  {
+   "id": "G11",
+   "name": "aten.triu.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "causal_mask",
+   "effort": "small",
+   "fixed_in": "0.32"
+  },
+  {
+   "id": "G12",
+   "name": "aten.one_hot.default",
+   "kind": "op",
+   "stage": "fxtypedfx",
+   "area": "embedding",
+   "effort": "small",
+   "fixed_in": null
+  },
+  {
+   "id": "P1",
+   "name": "sliding_window_attention",
+   "kind": "pattern",
+   "stage": "rewrite",
+   "area": "sliding_window_attention",
+   "effort": "medium",
+   "fixed_in": null
+  },
+  {
+   "id": "P2",
+   "name": "yarn_rope_scaling",
+   "kind": "pattern",
+   "stage": "rewrite",
+   "area": "yarn_rope_scaling",
+   "effort": "small",
+   "fixed_in": "0.35"
+  },
+  {
+   "id": "P3",
+   "name": "mla_latent_attention",
+   "kind": "pattern",
+   "stage": "rewrite",
+   "area": "mla_latent_attention",
+   "effort": "large",
+   "fixed_in": null
+  },
+  {
+   "id": "P4",
+   "name": "qk_norm_fusion",
+   "kind": "pattern",
+   "stage": "rewrite",
+   "area": "qk_norm_fusion",
+   "effort": "small",
+   "fixed_in": "0.33"
+  },
+  {
+   "id": "P5",
+   "name": "gated_delta_rule",
+   "kind": "pattern",
+   "stage": "rewrite",
+   "area": "gated_delta_rule",
+   "effort": "large",
+   "fixed_in": null
+  },
+  {
+   "id": "B1",
+   "name": "vision_patch_embed",
+   "kind": "kernel",
+   "stage": "bulk",
+   "area": "vision_patch_embed",
+   "effort": "medium",
+   "fixed_in": "0.36"
+  },
+  {
+   "id": "L1",
+   "name": "linear_attention_recurrence",
+   "kind": "kernel",
+   "stage": "loopy",
+   "area": "linear_attention_recurrence",
+   "effort": "large",
+   "fixed_in": null
+  },
+  {
+   "id": "L2",
+   "name": "sliding_kv_ring_buffer",
+   "kind": "kernel",
+   "stage": "loopy",
+   "area": "sliding_kv_ring_buffer",
+   "effort": "medium",
+   "fixed_in": null
+  },
+  {
+   "id": "T1",
+   "name": "moe_expert_dispatch",
+   "kind": "kernel",
+   "stage": "tron",
+   "area": "moe_expert_dispatch",
+   "effort": "large",
+   "fixed_in": null
+  },
+  {
+   "id": "T2",
+   "name": "mla_kv_decompress",
+   "kind": "kernel",
+   "stage": "tron",
+   "area": "mla_kv_decompress",
+   "effort": "medium",
+   "fixed_in": null
+  },
+  {
+   "id": "C1",
+   "name": "fp8_block_dequant",
+   "kind": "kernel",
+   "stage": "cpp",
+   "area": "fp8_block_dequant",
+   "effort": "medium",
+   "fixed_in": "0.36"
+  },
+  {
+   "id": "C2",
+   "name": "mxfp4_dequant",
+   "kind": "kernel",
+   "stage": "cpp",
+   "area": "mxfp4_dequant",
+   "effort": "medium",
+   "fixed_in": null
+  },
+  {
+   "id": "C3",
+   "name": "large_vocab_logits_split",
+   "kind": "kernel",
+   "stage": "cpp",
+   "area": "large_vocab_logits_split",
+   "effort": "small",
+   "fixed_in": "0.34"
+  },
+  {
+   "id": "C4",
+   "name": "awq_int4_dequant",
+   "kind": "kernel",
+   "stage": "cpp",
+   "area": "awq_int4_dequant",
+   "effort": "medium",
+   "fixed_in": null
+  },
+  {
+   "id": "X1",
+   "name": "data-dependent expert routing",
+   "kind": "export",
+   "stage": "export",
+   "area": "dynamic_shape",
+   "effort": "large",
+   "fixed_in": "0.34"
+  }
+ ]
+}
